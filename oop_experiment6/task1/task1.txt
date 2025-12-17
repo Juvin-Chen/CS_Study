@@ -1,17 +1,39 @@
 问题1：流操作与代码复用
 观察 print() 与 save() 的实现，均在内部调用 write() ：
 （1） write() 的参数类型是 std::ostream& ，它为什么能同时接受 std::cout 和 std::ofstream 对象作为实参？
-    
+    std::cout是std::ostream本身创建的实例，std::ofstream是std::ostream的派生类,基类的引用是可以绑定到派生类对象上面的，也就是多态。
+
 （2）如果要把结果写到其他设备，只要该设备也提供 std::ostream 接口，还需改动 write() 吗？
+    不用改动，write()函数需要一个ostream&,只要该设备的接口继承自std::ostream就ok。
+
 问题2：异常处理与捕获
 在代码中找到两处 throw 语句，说明：
+throw std::runtime_error("fail to open"+filename);
 （1）什么情况下会抛出异常；
+    文件打开失败时会抛出异常。
 （2）异常被谁捕获、做了哪些处理。
+    这两个异常都是在app()函数中try{}模块调用的save(),load()函数里的，发生异常时会被catch块捕捉。
+    然后catch块中cerr是用来输出错误信息的流，调用e.what()获取异常的具体描述信息，最后return，程序就安全地退出这个函数了。
+
 问题3：替代写法
-函数 app 中 std::sort(contestants.begin(), contestants.end(), cmp_by_solve); 参数
-cmp_by_solve 换成下面的lambda表达式是否可以？功能、性能、结果是否一致？
+函数 app 中 std::sort(contestants.begin(), contestants.end(), cmp_by_solve);
+参数cmp_by_solve 换成下面的lambda表达式是否可以？功能、性能、结果是否一致？[](const Contestant& a, const Contestant& b) {
+return a.solved != b.solved ? a.solved > b.solved: a.penalty < b.penalty;}
+    嗯结果是一致的，性能方面lambda表达式通常是更快的，没有调用函数的额外开销。
+
 问题4：数据完整性与代码健壮性
 把 in_file 改成 "./data_bad.txt" （内含空白行或字段缺失），重新编译运行：
 （1）观察运行结果有什么问题？给出测试截图并分析原因。
-（2）思考：如何修改函数 std::vector<Contestant> load(const std::string& filename) ，使其提示出
-错行号并跳过有问题的数据行，同时让程序继续执行？（选答*）
+    打印出来的结果数据是错误的，紊乱的。
+    load函数中的is输入流对象在读取的时候会自动忽略前导空百符（如空格和换行），所以读到第4行的时候因为整行的数据都是缺失的就直接一起都跳过了
+    但是当读到第10行时，这一行的数据中的解题数和总罚时都缺失，所以就跳过空白将第10行的序号8读成了解题数，将学号读成了罚时，这两个能成功读取是因为类型能跟int匹配上
+    但是接下来的该读到int的时候读到了string类型的name，就读取失败了，退出。后面三个人的数据直接就没读进去。
+（2）思考：如何修改函数 std::vector<Contestant> load(const std::string& filename) ，使其提示出错行号并跳过有问题的数据行，同时让程序继续执行？（选答*）
+修改：
+std::vector<Contestant> load(const std::string& filename){
+    //从while(is>>seq>>t)开始修改，之前的代码同上
+    bool go_on=true;
+    while(go_on){
+        auto var=
+    }
+}
