@@ -1,15 +1,13 @@
 #pragma once
 #include"Car.h"
 
-
-//ADT
 typedef int Status;
 #define OVERFLOW -2
 #define OK 1
 #define ERROR 0
 #define MAXSIZE 2 //配合题目中给的测试数据
 
-//顺序栈的定义
+//顺序栈的定义,ADT
 typedef struct{
     car *base;
     car *top;
