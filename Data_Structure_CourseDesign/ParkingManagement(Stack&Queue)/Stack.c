@@ -11,7 +11,7 @@ Status InitStack(Stack *s){
 }
 
 //入栈
-Status Push(Stack *s,int e){
+Status Push(Stack *s,car e){
     if(s->top-s->base==s->stacksize) return ERROR;
     *(s->top)=e;
     s->top++;
@@ -19,7 +19,7 @@ Status Push(Stack *s,int e){
 }
 
 //出栈
-Status Pop(Stack *s,int *e){
+Status Pop(Stack *s,car *e){
     if(s->top==s->base) return ERROR;
     s->top--;
     *e=*(s->top);
@@ -27,6 +27,6 @@ Status Pop(Stack *s,int *e){
 }
 
 //获取栈顶元素
-int GetTop(Stack *s){
+car GetTop(Stack *s){
     if(s->top!=s->base) return *(s->top-1);
 }

@@ -1,7 +1,8 @@
 #pragma once
+#include"Car.h"
+
 
 //ADT
-
 typedef int Status;
 #define OVERFLOW -2
 #define OK 1
@@ -10,12 +11,12 @@ typedef int Status;
 
 //顺序栈的定义
 typedef struct{
-    int *base;
-    int *top;
+    car *base;
+    car *top;
     int stacksize;
 }Stack;
 
 Status InitStack(Stack *s);
-Status Push(Stack *s,int e);
-Status Pop(Stack *s,int *e);
-int GetTop(Stack *s);
+Status Push(Stack *s,car e);
+Status Pop(Stack *s,car *e);
+car GetTop(Stack *s);
