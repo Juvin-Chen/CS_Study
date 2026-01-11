@@ -2,9 +2,9 @@
 
 ## 一、数制转换
 
-数制转换的原理为：$N = (N \ div \ d) \times d + N \ mod \ d$
+数制转换的原理为：$N = (N \text{ div } d) \times d + N \text{ mod } d$
 
-由于计算顺序和输出顺序相反，故适合使用栈。
+计算顺序和输出顺序相反，故适合使用栈。
 
 ### 算法步骤
 
@@ -18,12 +18,10 @@
    - 弹出栈顶元素 `e`；
    - 输出 `e`。
 
-C++
-
-```
+```cpp
 void conversion(){
     InitStack(S);
-    scanf("%d", &N); // 注意：实际写代码时需加取地址符 &，此处保留原笔记内容
+    scanf("%d", &N);
     while(N){
         Push(S, N % 8);
         N = N / 8;
@@ -39,16 +37,14 @@ void conversion(){
 - **时间复杂度**：$O(\log_2 N)$
 - **空间复杂度**：$O(\log_2 N)$
 
-------
-
 ## 二、简单表达式括号匹配
 
 **简单表达式**：整数、四则运算符、圆括号、中括号、花括号。
 
 检验简单表达式中的括号是否合乎规则：
 
-- **正确示例**：`（［］（））` 或 `［（［ ］［ ］）］`
-- **错误示例**：`［（］）` 或 `（［（）] ` 或 `[ ( ) ] )`
+- **正确**：`（［］（））` 或 `［（［ ］［ ］）］`
+- **错误**：`［（］）` 或 `（［（）] ` 或 `[ ( ) ] )`
 
 **原理**：
 
@@ -79,13 +75,13 @@ bool matching(char exp[], int n){
     bool mat = true; 
     InitStack(S);
     while(i < n && mat){
-        switch (exp[i]) { // 调整为标准 C 语法格式以便阅读
+        switch (exp[i]) {
             case '(': 
                 Push(S, exp[i]); 
                 i++; 
                 break;
             case ')':
-                if(!StackEmpty(S) && GetTop(S) == '(') {
+                if( !StackEmpty(S) && GetTop(S) == '(' ){
                     Pop(S, e); 
                     i++; 
                 } else { 
@@ -100,8 +96,6 @@ bool matching(char exp[], int n){
     return mat;
 }
 ```
-
-------
 
 ## 三、简单表达式求值
 
@@ -138,7 +132,7 @@ OperandType EvaluateExpression(){
     while(ch != '#' || GetTop(OPTR) != '#'){
         if (!In(ch)) { 
             Push(OPND, ch); 
-            cin >> ch; // ch 不是运算符则进栈
+            cin >> ch; // ch不是运算符则进栈
         } else {
             switch (Precede(GetTop(OPTR), ch)) { // 比较优先权
                 case '<': // 当前字符 ch 压入 OPTR 栈，读入下一字符 ch
@@ -184,11 +178,11 @@ OperandType EvaluateExpression(){
 
 #### 后缀表达式求值算法思想
 
-1. 建立一个栈；
+1. 建立一个栈 `S`；
 2. 从左到右扫描后缀表达式；
    - 遇到**数字**就将其转换为数值压入栈 `S` 中；
    - 遇到**运算符** `op`，则从栈中依次弹出两个数 `Y` 和 `X`，然后以 `X op Y` 的形式计算。将计算结果压入栈 `S` 中；
-3. 重复执行，直到表达式扫描完毕，最后输出栈顶的数值即为表达式的结果。
+3. 重复执行，直到表达式扫描完毕，最后输出栈顶的数值即为表达式的结果；
 
 > **结论**：如果把输入的表达式转换成后缀式，则计算机能够非常简单地运算得到结果。
 
