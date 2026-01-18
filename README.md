@@ -15,7 +15,7 @@
 
 * **Programming Practice CourseDesign （程序设计实践课程设计）**
     * **项目名称**: [Battle for food](https://github.com/Juvin-Chen/Battle-for-food)
-    * **简介**: GUI实现，EasyX / VS2022 / C++ , 双人游戏-争夺食物保卫战，难度不大只是加一个图形库，这还是大一写的了~ 
+    * **简介**: GUI实现，EasyX / VS2022 / C++ , 双人游戏-争夺食物保卫战，难度不大，只是加一个图形库，这还是大一写的了~ 
 
 * **Data Structure CourseDesign （数据结构课程设计）**
     * **项目名称**: [停车场管理 / 校园导航系统 / 员工管理系统](https://github.com/Juvin-Chen/CS_Study/tree/main/Data_Structure_CourseDesign)
