@@ -1,6 +1,36 @@
-### About me
-- **Education Background**: an undergraduate student majoring in Computer Science , NUIST
-用来放专业内课程coding学习のrepo😈 | C/C++
-- **Covered Courses**:
-  
-> 备注：部分文件夹的后缀为使用的语言
+# NUIST Computer Science Student
+2024
+
+> Courseworkのrepo😈 
+
+## About this repo
+
+* **Main Languages**: C / C++ / Python
+
+## Projects 😊
+
+* **OOP CourseDesign（C++课程设计）**
+    * **项目名称**: [Campus Rainhub](https://github.com/Juvin-Chen/CampusRainhub)
+    * **简介**: GUI实现，Qt / MySQL / CMake（完整代码见独立仓库）
+
+* **Programming Practice CourseDesign （程序设计实践课程设计）**
+    * **项目名称**: [Battle for food](https://github.com/Juvin-Chen/Battle-for-food)
+    * **简介**: GUI实现，EasyX / VS2022 / C++ , 双人游戏-争夺食物保卫战，难度也不大，这还是大一写的了~ 
+
+* **Data Structure CourseDesign （数据结构课程设计）**
+    * **项目名称**: 停车场管理 / 校园导航系统 / 员工管理系统
+    * **简介**: 均为CLI实现，比较简单，纯练手，手搓数据结构罢了））。
+
+
+## Courses & Studies
+
+### 数据结构 / Data Structures
+* **`Data_Structure_experiment_C`**: Data Structures's experiments
+* **`Study_of_DataStructure`**:  some study notes and practice code 
+
+### C++ 与面向对象 / C++ & OOP
+* **`Study_of_Cplus`**: Basic Syntax of C++
+* **`Study_of_OOP-C++`**: OOP's experiments
+
+---
+> **备注**: 部分文件夹的后缀为该模块使用的语言。
