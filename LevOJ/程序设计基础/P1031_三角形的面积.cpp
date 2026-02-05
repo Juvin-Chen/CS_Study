@@ -8,6 +8,7 @@ int main() {
     unsigned long long a, b, c;
     double p = 0.0, S = 0.0;
     cin >> a >> b >> c;
+
     if (!a || !b || !c) {
         cout << -1 << endl;
     } else if (a + b > c && a + c > b && b + c > a) {
