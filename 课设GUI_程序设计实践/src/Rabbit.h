@@ -16,7 +16,7 @@ struct Vec {
 };
 
 class Rabbit {
-  public:
+public:
     float x, y;
     int drinks = 0;
     bool alive = true;
